@@ -13,6 +13,7 @@ class User extends CI_Controller {
 
   public function login()
   {
+    //debemos omitir estas carpetas
     $dashboard = 'admin/dashboard';
     $this->user_m->loggedin() == FALSE || redirect($dashboard);
 
@@ -24,7 +25,7 @@ class User extends CI_Controller {
       if ($this->user_m->login() == TRUE) {
         redirect($dashboard);
       }else{
-        $this->session->set_flashdata('msg', 'Escribir correctamente su email o password');
+        $this->session->set_flashdata('msg', 'Escribir correctamente su Correo o password');
         redirect('user/login', 'refresh');
       }
       
