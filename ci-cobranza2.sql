@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.6.6deb5ubuntu0.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 19-07-2021 a las 23:30:21
--- Versión del servidor: 10.4.13-MariaDB
--- Versión de PHP: 7.4.7
+-- Servidor: localhost:3306
+-- Tiempo de generación: 02-08-2021 a las 18:41:01
+-- Versión del servidor: 5.7.35-0ubuntu0.18.04.1
+-- Versión de PHP: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -20,6 +19,91 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ci-cobranza2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cash`
+--
+
+CREATE TABLE `cash` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_cash_general` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `receipt_no` int(11) DEFAULT NULL,
+  `description` int(11) NOT NULL,
+  `amount_deposited` decimal(10,0) DEFAULT NULL,
+  `amount_withdrawn` decimal(10,0) DEFAULT NULL,
+  `charged_to` int(11) DEFAULT NULL,
+  `received_by` int(11) DEFAULT NULL,
+  `approved_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cash`
+--
+
+INSERT INTO `cash` (`id`, `id_cash_general`, `date`, `receipt_no`, `description`, `amount_deposited`, `amount_withdrawn`, `charged_to`, `received_by`, `approved_by`) VALUES
+(1, 1, '2021-08-03', NULL, 1, NULL, NULL, 1, NULL, NULL),
+(2, 2, '2021-08-11', NULL, 1, NULL, NULL, 1, NULL, NULL),
+(3, 2, '2021-08-07', 0, 2, '0', '12', 1, 1, 1),
+(4, 2, '2021-08-03', 1212, 3, '12', '0', 1, 1, 2),
+(5, 2, '2021-08-17', 0, 2, '12222', '0', 1, 2, 1),
+(6, 3, '2021-08-19', NULL, 1, '12222', NULL, 1, NULL, NULL),
+(7, 3, '2021-08-03', 0, 3, '200', '0', 1, 1, 1),
+(8, 4, '2021-08-27', NULL, 1, '12422', NULL, 1, NULL, NULL),
+(9, 4, '2021-08-03', 0, 3, '0', '500', 1, 2, 1),
+(10, 5, '2021-09-04', NULL, 1, '11922', NULL, 1, NULL, NULL),
+(11, 6, '2021-09-12', NULL, 1, '11922', NULL, 1, NULL, NULL),
+(12, 7, '2021-09-20', NULL, 1, '11922', NULL, 1, NULL, NULL),
+(13, 7, '2021-08-10', 12, 3, '0', '500', 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cash_general`
+--
+
+CREATE TABLE `cash_general` (
+  `id` int(11) NOT NULL,
+  `from_cash_general` date NOT NULL,
+  `to_cash_general` date NOT NULL,
+  `balance_cash_general` decimal(10,0) DEFAULT NULL,
+  `amount_deposited` decimal(10,0) DEFAULT NULL,
+  `amount_withdrawn` decimal(10,0) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cash_general`
+--
+
+INSERT INTO `cash_general` (`id`, `from_cash_general`, `to_cash_general`, `balance_cash_general`, `amount_deposited`, `amount_withdrawn`, `status`) VALUES
+(1, '2021-08-03', '2021-08-10', NULL, NULL, NULL, 1),
+(2, '2021-08-11', '2021-08-18', '12222', '12234', '12', 1),
+(3, '2021-08-19', '2021-08-26', '12422', '12422', '0', 0),
+(4, '2021-08-27', '2021-09-03', '11922', '12422', '500', 0),
+(5, '2021-09-04', '2021-09-11', '11922', '11922', NULL, 1),
+(6, '2021-09-12', '2021-09-19', '11922', '11922', NULL, 1),
+(7, '2021-09-20', '2021-09-27', '11422', '11922', '500', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `charged_to`
+--
+
+CREATE TABLE `charged_to` (
+  `id_charged_to` int(11) NOT NULL,
+  `description` varchar(75) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `charged_to`
+--
+
+INSERT INTO `charged_to` (`id_charged_to`, `description`) VALUES
+(1, 'Petty Cash');
 
 -- --------------------------------------------------------
 
@@ -65,7 +149,7 @@ CREATE TABLE `customers` (
   `business_name` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
   `ruc` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
   `company` varchar(150) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `loan_status` int(11) NOT NULL DEFAULT 0
+  `loan_status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -77,8 +161,29 @@ INSERT INTO `customers` (`id`, `dni`, `first_name`, `last_name`, `gender`, `depa
 (9, '344555', 'mario', 'flores', 'femenino', 10, '1003', '100311', '', '', '', '', '', '', 1),
 (10, '12344', 'ruben', 'chavez', 'masculino', 10, '1002', '100202', 'av el incas98', '', '', '', '', '', 1),
 (11, '123451', 'diego', 'arnica', 'masculino', 12, '1203', '120303', 'mariano cron 45', '', '', '', '', '', 1),
-(12, '7654321', 'matilde', 'frisanc', 'femenino', 11, '1103', '110304', 'choqwur n455', '', '', '', '', '', 1),
+(12, '7654321', 'matilde', 'frisanc', 'femenino', 11, '1103', '110304', 'choqwur n455', '', '', '', '', '', 0),
 (13, '1223', 'pablo', 'moralesss', 'masculino', 10, '1002', '100202', '', '', '', '', '', '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `description_cash`
+--
+
+CREATE TABLE `description_cash` (
+  `id` int(11) NOT NULL,
+  `description` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `description_cash`
+--
+
+INSERT INTO `description_cash` (`id`, `description`) VALUES
+(1, 'Open Balance'),
+(2, 'Fuel for Hired Vehicles'),
+(3, 'Deposit To Petty Cash'),
+(4, 'Other Expenses');
 
 -- --------------------------------------------------------
 
@@ -107,7 +212,7 @@ INSERT INTO `loans` (`id`, `customer_id`, `credit_amount`, `interest_amount`, `n
 (10, 11, '3000.00', '3.00', 4, '772.50', 'mensual', 1, '2021-07-04', b'1'),
 (11, 10, '3000.00', '4.00', 3, '1040.00', 'mensual', 1, '2021-07-18', b'1'),
 (12, 9, '2000.00', '2.00', 3, '680.00', 'mensual', 1, '2021-07-18', b'1'),
-(13, 12, '1000.00', '2.00', 4, '255.00', 'mensual', 2, '2021-07-18', b'1'),
+(13, 12, '1000.00', '2.00', 4, '255.00', 'mensual', 2, '2021-07-18', b'0'),
 (14, 13, '4000.00', '3.00', 4, '1030.00', 'mensual', 1, '2021-07-18', b'1');
 
 -- --------------------------------------------------------
@@ -122,7 +227,7 @@ CREATE TABLE `loan_items` (
   `date` date NOT NULL,
   `num_quota` int(11) NOT NULL,
   `fee_amount` decimal(25,2) NOT NULL,
-  `pay_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `pay_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` bit(1) NOT NULL DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -141,10 +246,10 @@ INSERT INTO `loan_items` (`id`, `loan_id`, `date`, `num_quota`, `fee_amount`, `p
 (48, 12, '2021-08-18', 1, '680.00', '2021-07-19 02:09:52', b'1'),
 (49, 12, '2021-09-18', 2, '680.00', '2021-07-19 02:09:53', b'1'),
 (50, 12, '2021-10-18', 3, '680.00', '2021-07-19 02:09:53', b'1'),
-(51, 13, '2021-08-18', 1, '255.00', '2021-07-19 02:10:53', b'1'),
-(52, 13, '2021-09-18', 2, '255.00', '2021-07-19 02:10:53', b'1'),
-(53, 13, '2021-10-18', 3, '255.00', '2021-07-19 02:10:53', b'1'),
-(54, 13, '2021-11-18', 4, '255.00', '2021-07-19 02:10:53', b'1'),
+(51, 13, '2021-08-18', 1, '255.00', '2021-07-29 16:19:36', b'0'),
+(52, 13, '2021-09-18', 2, '255.00', '2021-07-30 17:39:28', b'0'),
+(53, 13, '2021-10-18', 3, '255.00', '2021-07-29 16:19:36', b'0'),
+(54, 13, '2021-11-18', 4, '255.00', '2021-07-30 17:39:28', b'0'),
 (55, 14, '2021-08-18', 1, '1030.00', '2021-07-19 02:26:15', b'0'),
 (56, 14, '2021-09-18', 2, '1030.00', '2021-07-19 02:26:16', b'0'),
 (57, 14, '2021-10-18', 3, '1030.00', '2021-07-19 02:23:32', b'1'),
@@ -2311,19 +2416,46 @@ CREATE TABLE `users` (
   `first_name` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `last_name` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
   `email` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
-  `password` varchar(250) COLLATE utf8_spanish_ci NOT NULL
+  `password` varchar(250) COLLATE utf8_spanish_ci NOT NULL,
+  `f_reveived_by` tinyint(1) NOT NULL,
+  `f_approved_by` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`) VALUES
-(1, 'marios', 'mamani', 'admin@gmail.com', 'ad57cb3de9c53c1fc7de94665f6f1db2dfbcaaf73063769fed0b3011466eba602c2f423c4725c6dfacdc2973a518a18e0784e848ca3aabd7cadfd140df1df447');
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `f_reveived_by`, `f_approved_by`) VALUES
+(1, 'marios', 'mamani', 'admin@gmail.com', 'ad57cb3de9c53c1fc7de94665f6f1db2dfbcaaf73063769fed0b3011466eba602c2f423c4725c6dfacdc2973a518a18e0784e848ca3aabd7cadfd140df1df447', 0, 0),
+(2, 'Brian', 'Perez', 'Brian@admin.com', 'ad57cb3de9c53c1fc7de94665f6f1db2dfbcaaf73063769fed0b3011466eba602c2f423c4725c6dfacdc2973a518a18e0784e848ca3aabd7cadfd140df1df447', 0, 0),
+(3, 'Jorge', 'Amores', 'Jorge@admin.com', 'ad57cb3de9c53c1fc7de94665f6f1db2dfbcaaf73063769fed0b3011466eba602c2f423c4725c6dfacdc2973a518a18e0784e848ca3aabd7cadfd140df1df447', 0, 0);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `cash`
+--
+ALTER TABLE `cash`
+  ADD UNIQUE KEY `id_cash` (`id`),
+  ADD KEY `approved_by_user_id` (`approved_by`),
+  ADD KEY `received_by_user_id` (`received_by`),
+  ADD KEY `charged_to_user_id` (`charged_to`),
+  ADD KEY `id_cash_general_cash_id` (`id_cash_general`),
+  ADD KEY `descripcion_id_cash_general_id` (`description`);
+
+--
+-- Indices de la tabla `cash_general`
+--
+ALTER TABLE `cash_general`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `charged_to`
+--
+ALTER TABLE `charged_to`
+  ADD PRIMARY KEY (`id_charged_to`);
 
 --
 -- Indices de la tabla `coins`
@@ -2335,6 +2467,12 @@ ALTER TABLE `coins`
 -- Indices de la tabla `customers`
 --
 ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `description_cash`
+--
+ALTER TABLE `description_cash`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2381,38 +2519,63 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `cash`
+--
+ALTER TABLE `cash`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT de la tabla `cash_general`
+--
+ALTER TABLE `cash_general`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT de la tabla `charged_to`
+--
+ALTER TABLE `charged_to`
+  MODIFY `id_charged_to` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `coins`
 --
 ALTER TABLE `coins`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT de la tabla `customers`
 --
 ALTER TABLE `customers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
+--
+-- AUTO_INCREMENT de la tabla `description_cash`
+--
+ALTER TABLE `description_cash`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `loans`
 --
 ALTER TABLE `loans`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
 --
 -- AUTO_INCREMENT de la tabla `loan_items`
 --
 ALTER TABLE `loan_items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
-
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `cash`
+--
+ALTER TABLE `cash`
+  ADD CONSTRAINT `approved_by_user_id` FOREIGN KEY (`approved_by`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `charged_to_user_id` FOREIGN KEY (`charged_to`) REFERENCES `charged_to` (`id_charged_to`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `descripcion_id_cash_general_id` FOREIGN KEY (`description`) REFERENCES `description_cash` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_cash_general_cash_id` FOREIGN KEY (`id_cash_general`) REFERENCES `cash_general` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `received_by_user_id` FOREIGN KEY (`received_by`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `loans`
@@ -2426,7 +2589,6 @@ ALTER TABLE `loans`
 --
 ALTER TABLE `loan_items`
   ADD CONSTRAINT `loan_items_ibfk_1` FOREIGN KEY (`loan_id`) REFERENCES `loans` (`id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
