@@ -6,6 +6,8 @@ class Cash extends CI_Controller {
   public function __construct()
   {
     parent::__construct();
+    $this->load->model('Description_cash_m');
+    $this->load->model('Charged_to_m');
     $this->load->model('Cash_m');
     $this->load->model('Cash_general_m');
     $this->load->library('form_validation');
@@ -18,6 +20,60 @@ class Cash extends CI_Controller {
     $data['cash'] = $this->Cash_m->get_cash(); 
     $data['subview'] = 'admin/cash/index';
     $this->load->view('admin/_main_layout', $data);
+  }
+
+  public function add_description_cash()
+  {
+    if(isset($_POST["description_name"]))
+    {
+      $category_name = $_POST["description_name"];
+      $result_exist = $this->Description_cash_m->search_description_cash($category_name);
+      //echo json_encode($result_exist);
+      if (!$result_exist) {
+        $data = array(
+          'description'	=>	$category_name
+        );
+        $this->Description_cash_m->insert_new_description($data);
+        $ultimoId = $this->db->insert_id();
+        $data=array(
+          'ultimoId'=>$ultimoId,
+          'resp'=>'yes'    
+        );
+        echo json_encode($data);
+      } else {
+        $data=array(
+          'resp'=>'no'
+        );
+        echo json_encode($data);
+      }    
+    }
+  }
+
+  public function add_charged_to()
+  {
+    if(isset($_POST["charged_to_name"]))
+    {
+      $charged_to = $_POST["charged_to_name"];
+      $result_exist = $this->Charged_to_m->search_charged_to($charged_to);
+      //echo json_encode($result_exist);
+      if (!$result_exist) {
+        $data = array(
+          'description'	=>	$charged_to
+        );
+        $this->Charged_to_m->insert_new_charged_to($data);
+        $ultimoId = $this->db->insert_id();
+        $data=array(
+          'ultimoId'=>$ultimoId,
+          'resp'=>'yes'    
+        );
+        echo json_encode($data);
+      } else {
+        $data=array(
+          'resp'=>'no'
+        );
+        echo json_encode($data);
+      }  
+    }
   }
 
 
