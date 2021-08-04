@@ -22,8 +22,8 @@
           <?php if(count($cash_general)): foreach($cash_general as $cash_g): ?>
             <tr>
               <td><?php echo $cash_g->id ?></td>
-              <td><?php echo date("d/m/Y", strtotime($cash_g->from_cash_general)); ?></td> 
-              <td><?php echo date("d/m/Y", strtotime($cash_g->to_cash_general)); ?></td>
+              <td><?php echo date("m/d/Y", strtotime($cash_g->from_cash_general)); ?></td> 
+              <td><?php echo date("m/d/Y", strtotime($cash_g->to_cash_general)); ?></td>
               <td><?php 
               if (!$cash_g->balance_cash_general) {
                 echo '$0';

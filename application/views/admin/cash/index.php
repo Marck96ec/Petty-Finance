@@ -16,11 +16,11 @@
     <div class="form-row">
       <div class="form-group col-12 col-md-4">
         <label class="small mb-1" for="inputUsername">From</label>
-        <input class="form-control" id="credit_amount" type="text" disabled="" value="<?php echo date("d/m/Y", strtotime($cash_general_info->from_cash_general));?>">
+        <input class="form-control" id="credit_amount" type="text" disabled="" value="<?php echo date("m/d/Y", strtotime($cash_general_info->from_cash_general));?>">
       </div>
       <div class="form-group col-12 col-md-4">
         <label class="small mb-1" for="inputUsername">To</label>
-        <input class="form-control" id="payment_m" type="text" disabled="" value="<?php echo date("d/m/Y", strtotime($cash_general_info->to_cash_general));?>">
+        <input class="form-control" id="payment_m" type="text" disabled="" value="<?php echo date("m/d/Y", strtotime($cash_general_info->to_cash_general));?>">
       </div>
     </div>
   </div>
@@ -46,6 +46,7 @@
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
+            <th>#</th>
             <th>Date</th>
             <th>Receipt N°.</th>
             <th>Description</th>
@@ -58,9 +59,10 @@
           </tr>
         </thead>
         <tbody>
-          <?php if(count($cash)): foreach($cash as $cash_u): ?>
+          <?php $i=count($cash)+1; if(count($cash)): foreach($cash as $cash_u): ?>
             <tr>
-              <td><?php echo date("d/m/Y", strtotime($cash_u->date)) ?></td>
+            <td><?php $i--; echo $i; ?></td>
+              <td><?php echo date("m/d/Y", strtotime($cash_u->date)) ?></td>
               <td><?php 
               if (!$cash_u->receipt_no) { 
                 echo 'N/A';

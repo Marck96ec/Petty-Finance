@@ -19,7 +19,7 @@ class Cash extends CI_Controller {
   {
     $data['cash'] = $this->Cash_m->get_cash(); 
     $data['subview'] = 'admin/cash/index';
-    $this->load->view('admin/_main_layout', $data);
+    $this->load->view('admin/_main_layout', $data); 
   }
 
   public function add_description_cash()
@@ -117,7 +117,7 @@ class Cash extends CI_Controller {
       
       $new_amount_deposited = floatval($object->amount_deposited);//250
       $new_amount_withdrawn = floatval($object->amount_withdrawn);//100
-      //var_dump();die();
+      
       //update de general cash ++++++++++++++++++++++++
       $amount_deposited = $cash_g_info->amount_deposited; //250
       $amount_withdraw = $cash_g_info->amount_withdrawn; //30
@@ -173,7 +173,11 @@ class Cash extends CI_Controller {
   { 
     $id_cash_general = $this->session->userdata('id_general_cash');
     $data['id_cash_general'] = $id_cash_general;
-      $data['Cash_m'] = $this->Cash_m->get_new();
+    $cash_g_info= $this->Cash_m->get_cash_general_info($id_cash_general);
+    $data['from_cash_general'] = $cash_g_info->from_cash_general;
+    $data['to_cash_general'] = $cash_g_info->to_cash_general;
+
+    $data['Cash_m'] = $this->Cash_m->get_new();
 
     $data['charged_to'] = $this->Cash_m->get_charged_to();
     $data['users'] = $this->Cash_m->get_users();

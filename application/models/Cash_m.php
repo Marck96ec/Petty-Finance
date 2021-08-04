@@ -93,7 +93,8 @@ class Cash_m extends MY_Model {
     $this->db->join('users u', 'u.id = l.received_by', 'left');
     $this->db->join('users us', 'us.id = l.approved_by', 'left');
     $this->db->join('charged_to c', 'c.id_charged_to = l.charged_to', 'left');
-    $this->db->join('description_cash dc', 'dc.id = l.description', 'left');
+    $this->db->join('description_cash dc', 'dc.id = l.description', 'left'); 
+    $this->db->order_by('id', 'DESC');
 
     return $this->db->get()->result(); 
   }

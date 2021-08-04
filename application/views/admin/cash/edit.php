@@ -28,13 +28,16 @@
         
         <div class="form-group col-md-6">
           <label class="small mb-1" for="inputUsername">Date</label>
-          <input class="form-control" id="inputUsername" type="date" name="date" value="<?php echo set_value('date', $this->input->post('date') ? $this->input->post('date') : $Cash_m->date); ?>"  
-          <?php if ($Cash_m->date) {
+          <input class="form-control" id="inputUsername" type="date" name="date" value="<?php echo set_value('date', $this->input->post('date') ? $this->input->post('date') : $Cash_m->date );  ?>"  
+          <?php if ($Cash_m->date) { 
             echo 'readonly';
           } else {
             echo '';
           }
-          ?>>
+          ?> 
+          min="<?php  if(isset($from_cash_general)){echo $from_cash_general;}else{ echo '';}?>" 
+          max="<?php if(isset($to_cash_general)){echo $to_cash_general;}else{ echo '';} ?>"
+          placeholder="mm-dd-yyyy">
         </div> 
         <div class="form-group col-md-6">
           <label class="small mb-1" for="inputUsername">Receipt N°.</label>
@@ -59,11 +62,11 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label class="small mb-1" for="inputUsername">Amount Deposited</label>
-          <input class="form-control" id="inputUsername" type="text" name="amount_deposited" value="<?php echo set_value('amount_deposited', $this->input->post('amount_deposited') ? $this->input->post('amount_deposited') : $Cash_m->amount_deposited); ?>" placeholder="Ejm: 200">
+          <input class="form-control decimales" id="inputUsername" type="text" name="amount_deposited" value="<?php echo set_value('amount_deposited', $this->input->post('amount_deposited') ? $this->input->post('amount_deposited') : $Cash_m->amount_deposited); ?>" placeholder="Ejm: 200">
         </div> 
         <div class="form-group col-md-4">
           <label class="small mb-1" for="inputUsername">Amount With Drawn</label>
-          <input class="form-control"  id="inputUsername" type="text" name="amount_withdrawn" value="<?php echo set_value('amount_withdrawn', $this->input->post('amount_withdrawn') ? $this->input->post('amount_withdrawn') : $Cash_m->amount_withdrawn); ?>" placeholder="Ejm: 0">
+          <input class="form-control decimales"  id="inputUsername" type="text" name="amount_withdrawn" value="<?php echo set_value('amount_withdrawn', $this->input->post('amount_withdrawn') ? $this->input->post('amount_withdrawn') : $Cash_m->amount_withdrawn); ?>" placeholder="Ejm: 0">
         </div>
         <div class="form-group col-md-4">
           <label class="small mb-1" for="exampleFormControlSelect2">Select Charged To</label>
@@ -87,7 +90,9 @@
               <option value = "" selected>Select Received By</option>
             <?php endif ?>
             <?php foreach ($users as $user): ?>
-              <option value="<?php echo $user->id ?>" <?php if ($user->id == $Cash_m->received_by) echo "selected" ?>><?php echo $user->first_name.' '.$user->last_name?></option>
+              <?php if ($user->f_reveived_by == 1): ?>
+                <option value="<?php echo $user->id ?>" <?php if ($user->id == $Cash_m->received_by) echo "selected" ?>><?php echo $user->first_name.' '.$user->last_name?></option>
+              <?php endif ?>
             <?php endforeach ?>
           </select>
         </div> 
@@ -103,8 +108,10 @@
             <?php if ($Cash_m->approved_by == 0): ?>
               <option value = "" selected>Select Approved By</option>
             <?php endif ?>
-            <?php foreach ($users as $user): ?>
-              <option value="<?php echo $user->id ?>" <?php if ($user->id == $Cash_m->approved_by) echo "selected" ?>><?php echo $user->first_name.' '.$user->last_name?></option>
+            <?php foreach ($users as $user): ?> 
+              <?php if ($user->f_approved_by == 1): ?>
+                <option value="<?php echo $user->id ?>" <?php if ($user->id == $Cash_m->approved_by) echo "selected" ?>><?php echo $user->first_name.' '.$user->last_name?></option>
+              <?php endif ?>
             <?php endforeach ?>
           </select>
         </div>
@@ -129,11 +136,11 @@ $('#description').select2({
     //console.log(new_description);
     if(new_description != '')
     {
-     
+
       $.ajax({
         type: 'POST',
         dataType: 'json', 
-        url: '/petty_finance/admin/Cash/add_description_cash',  
+        url: '<?php echo site_url() ?>admin/Cash/add_description_cash',  
         data: { 'description_name': new_description },
         success:function(res)
         {
@@ -165,7 +172,7 @@ $('#description').select2({
       $.ajax({
         type: 'POST',
         dataType: 'json', 
-        url: '/petty_finance/admin/Cash/add_charged_to',  
+        url: '<?php echo site_url() ?>admin/Cash/add_charged_to',  
         data: { 'charged_to_name': new_add_charged_to },
         success:function(res)
         {
@@ -182,4 +189,8 @@ $('#description').select2({
     }
 
   });
+
+  $('.decimales').on('input', function () {
+  this.value = this.value.replace(/[^0-9,.]/g, '').replace(/,/g, '.');
+});
 </script>
