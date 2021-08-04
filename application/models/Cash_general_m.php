@@ -54,6 +54,17 @@ class Cash_general_m extends MY_Model {
     return $this->db->get()->row(); 
   }
 
+  public function insert_auto_new_g($from_cash_general,$to_cash_general)
+  {   
+    $data = array(
+      'from_cash_general'=>$from_cash_general,
+      'to_cash_general'=>$to_cash_general,
+      'status'=>'0'
+    );
+    $qry = $this->db->insert('cash_general',$data);
+
+    return $qry;      
+  }
 }
 
 /* End of file User_m.php */

@@ -3,6 +3,7 @@
     <h6 class="m-0 font-weight-bold text-primary">Petty Cash General</h6>
    <!--<a class="d-sm-inline-block btn btn-sm btn-success shadow-sm" href="<?php echo site_url('admin/Cash_general/edit'); ?>"><i class="fas fa-plus-circle fa-sm"></i> Add Cash General</a>  -->
    <a href="<?php echo site_url('admin/Cash_general/new'); ?>" class="btn btn-sm btn-primary shadow-sm"><i class="fas fa-align-justify fa-sm"></i> Add Cash</a>
+   <a href="<?php echo site_url('admin/Cash_general/new_auto'); ?>" class="btn btn-sm btn-primary shadow-sm"><i class="fas fa-align-justify fa-sm"></i> Add Cash _Automa</a>
   </div>
   <div class="card-body">
     <div class="table-responsive">

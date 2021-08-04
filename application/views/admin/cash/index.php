@@ -86,8 +86,24 @@
               }
                ?></td>
               <td><?php echo $cash_u->charged_to ?></td>
-              <td><?php echo $cash_u->received_by ?></td>
-              <td><?php echo $cash_u->approved_by ?></td>
+              <td>
+              <?php 
+              if (!$cash_u->received_by) { 
+                echo 'N/A';
+              } else {
+                echo $cash_u->received_by;
+              }           
+               ?>  
+              </td>
+              <td>
+              <?php 
+              if (!$cash_u->approved_by) { 
+                echo 'N/A';
+              } else {
+                echo $cash_u->approved_by;
+              }           
+               ?>  
+              </td>
               <td>
               <div <?php if ($cash_u === end($cash) || $cash_general_info->status == 1) {  
                 echo 'style="display:none"';

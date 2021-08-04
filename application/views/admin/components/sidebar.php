@@ -1,9 +1,9 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
     <div class="sidebar-brand-icon rotate-n-15">
-      <i class="fas fa-laugh-wink"></i>
+      <i class="fas fa-city"></i>
     </div>
     <div class="sidebar-brand-text mx-3">Gestión</div>
   </a>
@@ -21,7 +21,7 @@
   <!-- Divider -->
   <hr class="sidebar-divider">
 
-  <li class="nav-item">
+  <!--<li class="nav-item">
     <a class="nav-link" href="<?php echo site_url('admin/customers'); ?>">
       <i class="fas fa-fw fa-user"></i>
       <span>Clientes</span></a>
@@ -43,17 +43,17 @@
     <a class="nav-link" href="<?php echo site_url('admin/payments'); ?>">
       <i class="fas fa-fw fa-money-bill"></i>
       <span>Cobranzas</span></a>
-  </li>
+  </li>-->
 
   <li class="nav-item">
     <a class="nav-link" href="<?php echo site_url('admin/cash_general'); ?>">
       <i class="fas fa-fw fa-money-bill"></i>
       <span>Cash General</span></a>
-  </li>
+  </li> 
 
   
 
-  <li class="nav-item">
+  <!--<li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes" aria-expanded="false" aria-controls="collapseReportes">
       <i class="fas fa-fw fa-user"></i>
       <span>Reportes</span>
@@ -65,7 +65,7 @@
         <a class="collapse-item" href="<?php echo site_url('admin/reports/customers'); ?>">General x cliente</a>
       </div>
     </div>
-  </li>
+  </li>-->
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConfiguracion" aria-expanded="false" aria-controls="collapseConfiguracion">
