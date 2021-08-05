@@ -155,9 +155,9 @@ class Cash extends CI_Controller {
       $this->Cash_m->save($Cash_m_data, $id);
 
       if ($id) {
-        $this->session->set_flashdata('msg', 'Cash General editado correctamente');
+        $this->session->set_flashdata('msg', 'The transaction was successfully edited');
       } else {
-        $this->session->set_flashdata('msg', 'Cash General agregado correctamente');
+        $this->session->set_flashdata('msg', 'The transaction was added successfully');
       }
       
 
@@ -216,7 +216,7 @@ class Cash extends CI_Controller {
       //var_dump($data);die();
       $this->Cash_general_m->update_cash_general($data, $id_cash_general);
       $this->Cash_m->save($Cash_m_data);
-      $this->session->set_flashdata('msg', 'Cash agregado correctamente');
+      $this->session->set_flashdata('msg', 'The transaction was added successfully');
 
       redirect('admin/cash/detalle/'.$id_cash_general);
 

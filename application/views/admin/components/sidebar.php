@@ -5,7 +5,7 @@
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="fas fa-city"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Gestión</div>
+    <div class="sidebar-brand-text mx-3">Finance</div>
   </a>
 
   <!-- Divider -->
@@ -13,9 +13,9 @@
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item active">
-    <a class="nav-link" href="<?php echo site_url('admin/dashboard'); ?>">
+    <a class="nav-link" href="<?php echo '#';//site_url('admin/dashboard'); ?>">
       <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>Inicio</span></a>
+      <span>Dashboard</span></a>
   </li>
 
   <!-- Divider -->
@@ -48,7 +48,7 @@
   <li class="nav-item">
     <a class="nav-link" href="<?php echo site_url('admin/cash_general'); ?>">
       <i class="fas fa-fw fa-money-bill"></i>
-      <span>Cash General</span></a>
+      <span>Petty Cash</span></a>
   </li> 
 
   
@@ -70,12 +70,12 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConfiguracion" aria-expanded="false" aria-controls="collapseConfiguracion">
       <i class="fas fa-fw fa-user"></i>
-      <span>Configuracion</span>
+      <span>Settings</span>
     </a>
     <div id="collapseConfiguracion" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" style="">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="<?php echo site_url('admin/config'); ?>"> Editar datos</a>
-        <a class="collapse-item" href="<?php echo site_url('admin/config/change_password'); ?>"> Cambiar Contraseña</a>
+        <a class="collapse-item" href="<?php echo site_url('admin/config'); ?>"> Edit Profile</a>
+        <a class="collapse-item" href="<?php echo site_url('admin/config/change_password'); ?>"> Change Password</a>
       </div>
     </div>
   </li>

@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Login</title>
+  <title>C&C Finance</title>
 
   <!-- Custom fonts for this template-->
   <link href="<?php echo site_url() ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -39,7 +39,7 @@
               <div class="col-lg-12">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Iniciar Sesión!</h1>
+                    <h1 class="h4 text-gray-900 mb-4"><h2>C&C Finance</h2></h1>
                   </div>
                   <?php if ($this->session->flashdata('msg')): ?>
                     <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
@@ -58,14 +58,15 @@
                     </div>
                   <?php } ?>
                   <form class="user" action="<?php echo site_url('user/login'); ?>" method='post'>
+                  
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" name="email" placeholder="Ingresar Email">
+                      <input type="email" class="form-control form-control-user" name="email" placeholder="Enter Email">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" name="password" placeholder="Ingresar Contraseña">
+                      <input type="password" class="form-control form-control-user" name="password" placeholder="Enter Password">
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">
-                      Ingresar
+                      Login
                     </button>
                   </form>
                 </div>

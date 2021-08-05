@@ -8,17 +8,17 @@ class Config_m extends MY_Model {
   public $config_rules = array(
     array(
       'field' => 'first_name',
-      'label' => 'nombre(s)',
+      'label' => 'First Name',
       'rules' => 'trim|required'
     ),
     array(
       'field' => 'last_name',
-      'label' => 'apellido(s)',
+      'label' => 'Last Name',
       'rules' => 'trim|required'
     ),
     array(
       'field' => 'email',
-      'label' => 'correo electronico',
+      'label' => 'email',
       'rules' => 'trim|required'
     )
   );
@@ -26,17 +26,17 @@ class Config_m extends MY_Model {
   public $password_rules = array(
     array(
       'field' => 'old_password',
-      'label' => 'contraseña anterior',
+      'label' => 'Old Password',
       'rules' => 'trim|required|callback__password_verify'
     ),
     array(
       'field' => 'new_password',
-      'label' => 'nueva contraseña',
+      'label' => 'New Password',
       'rules' => 'trim|matches[confirm_password]'
     ),
     array(
       'field' => 'confirm_password',
-      'label' => 'confirmar contraseña',
+      'label' => 'Confirm Password',
       'rules' => 'trim|required'
     )
   );

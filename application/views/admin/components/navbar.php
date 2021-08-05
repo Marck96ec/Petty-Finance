@@ -58,7 +58,7 @@
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="<?php echo site_url('user/logout'); ?>">
           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-          Salir
+          Exit
         </a>
       </div>
     </li>

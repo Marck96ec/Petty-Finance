@@ -8,7 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <div class="card shadow mb-4">
-  <div class="card-header py-3"><?php echo empty($Cash_m->name) ? 'Nuevo Cash ' : 'Editar Cash '; ?> </div>
+  <div class="card-header py-3"><?php echo empty($Cash_m->name) ? 'New Transactions ' : 'Edit Transactions '; ?> </div>
   <div class="card-body">
     <?php if(validation_errors()) { ?>
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -65,11 +65,11 @@
           <input class="form-control decimales" id="inputUsername" type="text" name="amount_deposited" value="<?php echo set_value('amount_deposited', $this->input->post('amount_deposited') ? $this->input->post('amount_deposited') : $Cash_m->amount_deposited); ?>" placeholder="Ejm: 200">
         </div> 
         <div class="form-group col-md-4">
-          <label class="small mb-1" for="inputUsername">Amount With Drawn</label>
+          <label class="small mb-1" for="inputUsername">Amount Withdrawn</label>
           <input class="form-control decimales"  id="inputUsername" type="text" name="amount_withdrawn" value="<?php echo set_value('amount_withdrawn', $this->input->post('amount_withdrawn') ? $this->input->post('amount_withdrawn') : $Cash_m->amount_withdrawn); ?>" placeholder="Ejm: 0">
         </div>
         <div class="form-group col-md-4">
-          <label class="small mb-1" for="exampleFormControlSelect2">Select Charged To</label>
+          <label class="small mb-1" for="exampleFormControlSelect2">Charged To</label>
           <select class="form-control select2" id="charged_to" name="charged_to" >
             <?php if ($Cash_m->charged_to == 0): ?>
               <option value = "" selected></option>
@@ -117,9 +117,9 @@
         </div>
       </div>
 
-      <button class="btn btn-primary" type="submit">Registrar Cash </button>
+      <button class="btn btn-primary" type="submit">Register </button>
 
-      <a href="<?php echo site_url('admin/Cash/detalle/'.$id = $this->session->userdata('id_general_cash')); ?>" class="btn btn-dark">Cancelar</a>
+      <a href="<?php echo site_url('admin/Cash/detalle/'.$id = $this->session->userdata('id_general_cash')); ?>" class="btn btn-dark">Cancel</a>
       
       <?php echo form_close() ?>
     </div>
@@ -128,7 +128,7 @@
  
   <script>
 $('#description').select2({
-    placeholder:'Select Category',
+    placeholder:'Description',
     tags:true,
   }).on('select2:close', function(){
     var element = $(this);
@@ -160,7 +160,7 @@ $('#description').select2({
 
 
   $('#charged_to').select2({
-    placeholder:'Select Charged To',
+    placeholder:'Charged To',
     tags:true,
   }).on('select2:close', function(){
     var element = $(this);

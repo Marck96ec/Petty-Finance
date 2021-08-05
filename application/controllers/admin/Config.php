@@ -48,7 +48,7 @@ class Config extends CI_Controller {
       
       $this->config_m->save($password_data, $this->session->userdata('user_id'));
 
-      $this->session->set_flashdata('msg', 'constraseña editada correctamente');
+      $this->session->set_flashdata('msg', 'password edited correctly');
       
       redirect('admin/config/change_password');
 
@@ -62,7 +62,7 @@ class Config extends CI_Controller {
   {
     $user = $this->config_m->get($this->session->userdata('user_id'));
     if ($user->password != $this->config_m->hash($old_password)) {
-      $this->form_validation->set_message('_password_verify', 'La contraseña anterior no coincide con su actual contraseña');
+      $this->form_validation->set_message('_password_verify', 'The old password does not match your current password');
       return FALSE;
     } else {
       return TRUE;

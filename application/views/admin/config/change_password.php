@@ -1,5 +1,5 @@
 <div class="card shadow mb-4">
-  <div class="card-header py-3">Cambiar contraseña</div>
+  <div class="card-header py-3">Change Password</div>
   <div class="card-body">
     <?php if ($this->session->flashdata('msg')): ?>
       <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
@@ -20,20 +20,20 @@
     <?php echo form_open(); ?>
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label class="small mb-1" for="inputUsername">Contraseña anterior</label>
+          <label class="small mb-1" for="inputUsername">Old Password</label>
           <input class="form-control" id="inputUsername" type="password" name="old_password">
         </div>
         <div class="form-group col-md-4">
-          <label class="small mb-1" for="exampleFormControlarea1">Nueva contraseña </label>
+          <label class="small mb-1" for="exampleFormControlarea1">New Password</label>
           <input class="form-control" id="inputUsername" type="password" name="new_password">
         </div>
         <div class="form-group col-md-4">
-          <label class="small mb-1" for="exampleFormControlTextarea1">Confirmar contraseña</label>
+          <label class="small mb-1" for="exampleFormControlTextarea1">Confirm Password</label>
           <input class="form-control" id="inputUsername" type="password" name="confirm_password">
         </div>
       </div>
-      <button class="btn btn-primary" type="submit">Cambiar contraseña</button>
-      <a href="<?php echo site_url('admin/dashboard/'); ?>" class="btn btn-dark">Cancelar</a>
+      <button class="btn btn-primary" type="submit">Change Password</button>
+      <a href="<?php echo site_url('admin/dashboard/'); ?>" class="btn btn-dark">Cancel</a>
     <?php echo form_close() ?>
   </div>
 </div>

@@ -19,17 +19,17 @@ class Cash_m extends MY_Model {
     ),
     array(
       'field' => 'charged_to',
-      'label' => 'charged_to',
+      'label' => 'Charged_to',
       'rules' => 'trim|required'
     ),
     array(
       'field' => 'received_by',
-      'label' => 'received_by',
+      'label' => 'Received_by',
       'rules' => 'trim|required'
     ),
     array(
       'field' => 'approved_by',
-      'label' => 'approved_by',
+      'label' => 'Approved_by',
       'rules' => 'trim|required'
     )
 

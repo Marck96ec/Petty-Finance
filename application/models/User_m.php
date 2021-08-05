@@ -13,7 +13,7 @@ class User_m extends MY_Model {
     ),
     'password' => array(
       'field' => 'password',
-      'label' => 'Contraseña',
+      'label' => 'Password',
       'rules' => 'trim|required'
     )
   );

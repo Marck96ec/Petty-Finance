@@ -1,7 +1,15 @@
+<?php if ($this->session->flashdata('msg')): ?>
+  <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
+    <?= $this->session->flashdata('msg') ?>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<?php endif ?>
 
 <div class="card shadow mb-4">
   <div  class="card-header d-flex align-items-center justify-content-between py-3">
-    <h6 class="m-0 font-weight-bold text-primary">Petty Cash</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Transactions</h6>
     
       <div <?php if ($cash_general_info->status == 1) {
         echo 'style="display:none"';
@@ -35,7 +43,7 @@
         <input class="form-control" id="coin" name="coin" type="text" readonly="" value="<?php echo $cash_general_info->amount_deposited?>">
       </div>
       <div class="form-group col-12 col-md-4">
-        <label class="small mb-1" for="exampleFormControlTextarea1">Amount Withdraw</label>
+        <label class="small mb-1" for="exampleFormControlTextarea1">Amount Withdrawn</label>
         <input class="form-control" id="coin" name="coin" type="text" readonly="" value="<?php echo $cash_general_info->amount_withdrawn?>">
       </div>
     </div>
@@ -55,7 +63,7 @@
             <th>Charged To</th>
             <th>Received By</th>
             <th>Approved By</th>
-            <th>Accion</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -111,7 +119,7 @@
                 echo '';
               }
               ?>>
-                <a href="<?php echo site_url('admin/Cash/edit/'.$cash_u->id); ?>" class="btn btn-sm btn-info shadow-sm"><i class="fas fa-edit fa-sm"></i> Editar</a>
+                <a href="<?php echo site_url('admin/Cash/edit/'.$cash_u->id); ?>" class="btn btn-sm btn-info shadow-sm"><i class="fas fa-edit fa-sm"></i> Edit</a>
               </div>
               </td>
             </tr>
@@ -120,7 +128,7 @@
           <?php endforeach; ?>
           <?php else: ?>
             <tr>
-              <td colspan="6" class="text-center">No existen pagos, registrar un nuevo pago.</td>
+              <td colspan="6" class="text-center">There are no transactions, register a new transaction.</td>
             </tr>
           <?php endif; ?>
         </tbody>

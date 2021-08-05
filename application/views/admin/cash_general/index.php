@@ -1,9 +1,9 @@
 <div class="card shadow mb-4">
   <div class="card-header d-flex align-items-center justify-content-between py-3">
-    <h6 class="m-0 font-weight-bold text-primary">Petty Cash General</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Petty Cash</h6>
    <!--<a class="d-sm-inline-block btn btn-sm btn-success shadow-sm" href="<?php echo site_url('admin/Cash_general/edit'); ?>"><i class="fas fa-plus-circle fa-sm"></i> Add Cash General</a>  -->
-   <a href="<?php echo site_url('admin/Cash_general/new'); ?>" class="btn btn-sm btn-primary shadow-sm"><i class="fas fa-align-justify fa-sm"></i> Add Cash</a>
-   <a href="<?php echo site_url('admin/Cron_a/new_auto'); ?>" class="btn btn-sm btn-primary shadow-sm"><i class="fas fa-align-justify fa-sm"></i> Add Cash _Automa</a>
+    <!--<a href="<?php echo site_url('admin/Cash_general/new'); ?>" class="btn btn-sm btn-primary shadow-sm"><i class="fas fa-align-justify fa-sm"></i> Add Cash</a>-->
+    <!--<a href="<?php echo site_url('admin/Cron_a/new_auto'); ?>" class="btn btn-sm btn-primary shadow-sm"><i class="fas fa-align-justify fa-sm"></i> Add Cash _Automa</a>-->
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -16,7 +16,7 @@
             <th>Balance</th>
             <th>Amount Deposited</th>
             <th>Amount Withdraw</th>
-            <th>Acciones</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -58,7 +58,7 @@
               ?>
                 
                 
-                Detalle</a>
+                Detail</a>
               
               <div <?php if ($cash_g === reset($cash_general)) {  
                 echo '';
@@ -77,7 +77,7 @@
           <?php endforeach; ?>
           <?php else: ?>
             <tr>
-              <td colspan="6" class="text-center">No existen pagos, registrar un nuevo pago.</td>
+              <td colspan="6" class="text-center">There are no transactions, register a transaction.</td>
             </tr>
           <?php endif; ?>
         </tbody>
